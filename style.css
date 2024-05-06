@@ -9,6 +9,8 @@ coloque nas sessões indicadas*/
     /*Se esforce para trabalhar com variáveis, é uma dica profissional valiosa*/
    --cor-de-fundo: #F5F5F5;
    --cor-de-link: #000;
+   --altura-header: 80px;
+   --ancho-maximo: 1200px;
 }
 
 body {
@@ -43,7 +45,7 @@ https://en.bem.info/methodology/quick-start/*/
 
 section.menu{
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -55,6 +57,14 @@ section.menu{
 .menu__title{
     display: inline-flex;
     text-wrap: nowrap;
+}
+
+.menu__hamburguesa{
+    display: none;
+}
+
+.menu__hamburguesa__check{
+    display: none;
 }
 
 .menu__list{
@@ -399,7 +409,7 @@ section.formcontato{
     min-width: 15vw;
     padding: 1vw;
     background: cornflowerblue;
-    color: #F5F5F5;
+    color: var(--cor-de-fundo);
     border-color: cornflowerblue;
 
 }
@@ -482,12 +492,37 @@ Utiliza las referencias de los breakpoints @media abajo */
 
 /*Menu*/
 section.menu{
-    overflow: scroll;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    height: var(--altura-header);
+}
+
+.menu__header{
+    margin-right: 10px;
+}
+
+.menu__hamburguesa{
+    display: flex;
+    justify-content: end;
+    margin-left: 10px;
+}
+
+.menu__hamburguesa__check:checked + .menu__list{
+    height: calc(40vh - var(--altura-header));
 }
 
 .menu__list{
-    margin-left: 25vw;
+    top: - var(--altura-header);
+    height: 0;
+    left: -25px;
+    width: 25vw;
+    overflow: hidden;
+    flex-direction: column;
+    margin-left: 5vw;
     margin-right: 1vw;
+    background-color: pink;
+    position: absolute;
+    
 }
 
 /*Titulo*/
@@ -512,6 +547,7 @@ section.menu{
 /*Experiencia Profesional*/
 .experiencie__box{
     flex-flow: column wrap;
+    align-items: center;
 }
 
 .experiencie__box:nth-child(2n){
